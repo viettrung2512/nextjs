@@ -28,9 +28,9 @@ export default function TaskList(): React.ReactElement {
   };
 
   return (
-    <ul className={styles.taskList}>
+    <div className={styles.taskList}>
       {stableTasks.map((task, i) => (
-        <li
+        <div
           key={i}
           className={`${styles.taskItem} ${
             task.completed ? styles.taskItemCompleted : ""
@@ -42,7 +42,7 @@ export default function TaskList(): React.ReactElement {
             <button
               className={styles.completeButton}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the <li> click
+                e.stopPropagation(); // Prevent triggering the parent click
                 toggleComplete(i);
               }}
               aria-label={`Mark task ${task.title} as complete`}
@@ -50,7 +50,7 @@ export default function TaskList(): React.ReactElement {
             <button
               className={styles.deleteButton}
               onClick={(e) => {
-                e.stopPropagation(); // Prevent triggering the <li> click
+                e.stopPropagation(); // Prevent triggering the parent click
                 deleteTask(i);
               }}
               aria-label={`Delete task ${task.title}`}
@@ -58,8 +58,8 @@ export default function TaskList(): React.ReactElement {
               &times;
             </button>
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
